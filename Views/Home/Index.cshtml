@@ -1,0 +1,43 @@
+﻿@model CostPrice.Models.CostModel
+@{
+    ViewData["Title"] = "Home Page";
+}
+@using (Html.BeginForm("Index", "Home", FormMethod.Post))
+{
+    <div class="text-center">
+        @*<h1 class="display-4">Welcome</h1>
+            <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>*@
+        <div class="text-center">
+            <h1 class="display-4">Cost Price Fundamental Calculation </h1>
+
+            <label>Category</label>
+            @Html.DropDownList("Category", new List<SelectListItem>()
+{
+    new SelectListItem(){ Text= "FIFO", Value = "FIFO"},
+    new SelectListItem(){ Text= "LIFO", Value = "LIFO"},
+    new SelectListItem(){ Text= "Highest Cost", Value = "Highest Cost"},
+    new SelectListItem(){ Text= "Lowest Cost", Value = "Lowest Cost"},
+    new SelectListItem(){ Text= "Weighted Average", Value = "Weighted Average"}
+}, "Select Category")
+            <br />
+            <div class="form-group">
+                <label asp-for="@Model.shareNo"></label>
+                <input  asp-for="@Model.shareNo" min="1" /><br />
+                <span asp-validation-for="@Model.shareNo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="@Model.price"></label>
+                <input asp-for="@Model.price" /><br />
+                <span asp-validation-for="@Model.price" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="@Model.purchaseDate"></label>
+                <input value="@DateTime.Today.ToString("dd/MM/yyyy")" asp-for="@Model.purchaseDate">
+                <span asp-validation-for="@Model.purchaseDate" class="text-danger"></span>
+                </div>
+                <input type="submit" value="Submit" ata" />
+            </div>
+        </div>
+}
+<div class="text-center form-group ">
+    @Html.Raw(@ViewBag.Name)</div>
